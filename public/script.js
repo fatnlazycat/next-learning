@@ -7,7 +7,7 @@ async function startRecording() {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     mediaRecorder = new MediaRecorder(stream);
     mediaRecorder.ondataavailable = async event => {
-      if (event.data.size > 0 && signalRConnection.connectionStarted) {
+      if (event.data.size > 0 /*&& signalRConnection.connectionStarted*/) {
         const arrayBuffer = await event.data.arrayBuffer();
         const bytes = new Uint8Array(arrayBuffer);
         const base64String = btoa(String.fromCharCode(...bytes));
